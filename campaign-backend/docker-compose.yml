@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: campaign_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: .
+    container_name: campaign_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/campaigns
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PORT=3000
+    env_file:
+      - .env
+
+volumes:
+  mongo_data:

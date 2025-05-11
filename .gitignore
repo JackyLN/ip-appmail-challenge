@@ -1,0 +1,29 @@
+# Root-level ignores
+.DS_Store
+.env
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore OS / editor files
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Ignore node_modules in both frontend and backend
+campaign-frontend/node_modules/
+campaign-backend/node_modules/
+
+# Ignore build outputs
+campaign-frontend/dist/
+campaign-frontend/build/
+campaign-backend/dist/
+campaign-backend/build/
+
+coverage/
+
+# Optional: ignore environment-specific files
+campaign-frontend/.env*
+campaign-backend/.env*
