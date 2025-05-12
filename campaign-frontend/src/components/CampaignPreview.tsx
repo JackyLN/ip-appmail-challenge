@@ -1,4 +1,5 @@
 import { Campaign } from "../types/campaign";
+import sparkleIcon from "../assets/sparkle-icon.svg";
 
 interface Props {
   campaign: Campaign | null;
@@ -9,24 +10,35 @@ export default function CampaignPreview({ campaign }: Props) {
 
   return (
     <div className="preview-panel">
-      <p className="card-subtitle">{campaign.dateRange}</p>
-      <h3 className="preview-title">{campaign.title}</h3>
-
-      <div className="text-sm text-gray-700">
-        <p className="preview-label">Goal</p>
-        <p className="preview-text">{campaign.goal}</p>
-
-        <p className="preview-label">Audience</p>
-        <p className="preview-text">{campaign.audience}</p>
-
-        <p className="preview-label">Strategy</p>
-        <p className="preview-text">{campaign.strategy}</p>
-
-        <p className="preview-label">Campaign Idea</p>
-        <p className="preview-text">{campaign.idea}</p>
+      <div className="relative">
+        <p className="preview-subtitle">{campaign.suggested_send_date}</p>
+        <img src={sparkleIcon} alt="icon" className="absolute top-0 right-0 w-12 h-12" />
       </div>
 
-      <button className="btn-secondary">Create Campaign</button>
+      <h3 className="preview-title">{campaign.campaign_idea}</h3>
+
+      <div className="preview-group">
+        <div>
+          <p className="preview-label">Goal</p>
+          <p className="preview-value">{campaign.campaign_goal}</p>
+        </div>
+        <div>
+          <p className="preview-label">Audience</p>
+          <p className="preview-value">{campaign.target_audience}</p>
+        </div>
+      </div>
+
+      <div>
+        <p className="preview-section-label mt-2">Strategy</p>
+        <p className="preview-section-text">{campaign.rationale_and_strategy}</p>
+      </div>
+
+      <div>
+        <p className="preview-section-label mt-2">Campaign Idea</p>
+        <p className="preview-section-text">{campaign.theme_title}</p>
+      </div>
+
+      <button className="btn-preview">Create Campaign</button>
     </div>
   );
 }

@@ -1,14 +1,34 @@
+import { format } from "date-fns";
+
 interface Props {
-  month: string;
-  setMonth: (month: string) => void;
+  month: Date;
+  setMonth: (date: Date) => void;
 }
 
 export default function MonthNavigator({ month, setMonth }: Props) {
+  const prevMonth = () => {
+    const newMonth = new Date(month);
+    newMonth.setMonth(month.getMonth() - 1);
+    setMonth(newMonth);
+  };
+
+  const nextMonth = () => {
+    const newMonth = new Date(month);
+    newMonth.setMonth(month.getMonth() + 1);
+    setMonth(newMonth);
+  };
+
   return (
-    <div className="flex justify-center items-center mb-4 font-semibold">
-      <button className="mr-4 text-xl">&lt;</button>
-      {month}
-      <button className="ml-4 text-xl">&gt;</button>
+    <div className="month-navigator text-gray-800 text-lg font-medium flex items-center gap-4">
+      <button onClick={prevMonth} className="month-button">
+        &lt;
+      </button>
+
+      <span>{format(month, "MMMM yyyy")}</span>
+
+      <button onClick={nextMonth} className="month-button">
+        &gt;
+      </button>
     </div>
   );
 }
