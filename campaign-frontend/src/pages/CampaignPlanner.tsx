@@ -23,7 +23,7 @@ export default function CampaignPlanner() {
         <main className="main-content">
           <MonthNavigator month={month} setMonth={setMonth} />
           <div className="input-group mb-6">
-            <CampaignForm setCampaigns={setCampaigns} month={month} />
+            <CampaignForm setCampaigns={setCampaigns} campaigns={campaigns} month={month} />
           </div>
           <div className="flex gap-6 flex-1 overflow-hidden">
             <CampaignList campaigns={campaigns} setSelected={setSelected} selected={selected} />

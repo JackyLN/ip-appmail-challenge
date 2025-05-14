@@ -13,5 +13,5 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/campaigns', campaignRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server started on port ${process.env.PORT || 3000}`);
+console.log(`Server started on port ${process.env.PORT || 3000}`);
 });

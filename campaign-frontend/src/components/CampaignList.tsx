@@ -10,11 +10,11 @@ export default function CampaignList({ campaigns, setSelected, selected }: Props
   return (
     <div className="campaign-list">
       {campaigns.map((c) => {
-        const isSelected = selected?.id === c.id;
+        const isSelected = selected?._id === c._id;
 
         return (
           <div
-            key={c.id}
+            key={c._id}
             onClick={() => setSelected(c)}
             className={`card-base ${isSelected ? "card-selected" : "card-default card-hover"}`}
           >
