@@ -10,19 +10,22 @@ services:
       - mongo_data:/data/db
 
   backend:
-    build: .
+    build: ./campaign-backend
     container_name: campaign_backend
     restart: always
     ports:
       - "3000:3000"
+    env_file:
+      - ./campaign-backend/.env
     depends_on:
       - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/campaigns
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - PORT=3000
-    env_file:
-      - .env
+
+  frontend:
+    build: ./campaign-frontend
+    container_name: campaign_frontend
+    restart: always
+    ports:
+      - "8080:80"
 
 volumes:
   mongo_data:
