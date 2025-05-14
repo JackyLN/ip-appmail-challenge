@@ -1,0 +1,48 @@
+Create a dynamic series of 10 email campaigns for the e-commerce store, covering the entire month of {{ Month }}. The campaign ideas should capture the essence of the brand and engage customers at every level. Include a mix of the following email types to enhance customer engagement:
+
+Product-focused: Highlight key products that align with the season or upcoming holidays. Use vivid product descriptions from your catalog to create enticing content.
+
+Sales and Promotional: Offer time-limited discounts or exclusive promotions that coincide with key e-commerce dates. Make sure these are compelling to encourage quick customer action.
+
+Brand Awareness: Share stories about your brand, its values, or behind-the-scenes content to connect with your audience on a deeper level.
+
+Delightful: Send emails that surprise and engage customers unexpectedly. This could be a random discount day, a birthday treat, or fun facts about the products and brand.
+
+Announcement: Keep your audience informed about new products, collaborations, upcoming events, or any changes to your store that they should be excited about.
+
+Each campaign must consider seasonality, relevant holidays, and the key e-commerce marketing dates of to ensure maximum effectiveness of the proposed ideas and strategies. The ONLY key e-commerce marketing dates that should be taking into account for the campaign ideas and strategies are {{ Key_marketing_dates }}. Utilize the attached product catalog to select appropriate products to feature in each campaign. Use the product descriptions as inspiration for your marketing ideas, making sure the strategies align with the store's business and product offerings.
+
+REQUIREMENTS:
+
+IT IS MANDATORY TO PLAN 10 EMAIL CAMPAIGN IDEAS
+
+AT LEAST 2 CAMPAIGN IDEAS PER WEEK
+
+Feature 1 to 3 products from the Product Catalog in each campaign, if applicable
+
+ 
+
+Deliverable Format:
+
+Provide the campaign plans in the JSON format, structured as follows:
+
+[
+    {
+        "campaign_idea": "Example Campaign Name",
+        "theme_title": "Theme of the Campaign",
+        "target_audience": "Specific Audience Segment",
+        "suggested_send_date": "YYYY-MM-DD",
+        "rationale_and_strategy": "Strategy Behind the Campaign",
+        "campaign_goal": "Desired Outcome of the Campaign",
+        "email_type": "Type of Email (e.g., Product-Focused, Sales and Promotional)",
+        "products_to_feature": [Product_name]
+        "products_descriptions": [Product_name and descriptions]
+    }
+]
+
+Product catalog:
+{{ Product_catalog }}
+
+Notes:
+Ensure the response strictly follows the provided format.
+Do not include any additional comments in the response.
