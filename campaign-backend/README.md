@@ -49,8 +49,7 @@ Request Body:
 {
   "month": "May",
   "year": 2025,
-  "keyMarketingDates": "Mother's Day, Memorial Day",
-  "productCatalog": "1. Floral Candle - A relaxing scent...\n2. Outdoor Set - Great for spring..."
+  "url": "https://example.com"
 }
 ```
 
