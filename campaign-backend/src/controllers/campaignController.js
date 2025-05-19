@@ -1,5 +1,6 @@
 const CampaignSet = require("../models/Campaign");
 const { generateCampaignPrompt } = require("../services/openaiService");
+const { scrapeSiteContent } = require("../services/scraper");
 
 async function generateCampaigns(req, res) {
   const { month, year, url } = req.body;
@@ -14,7 +15,8 @@ async function generateCampaigns(req, res) {
     }
 
     const monthYear = `${month} ${year}`;
-    const campaigns = await generateCampaignPrompt(monthYear, "", url);
+    const { text: scrapedCatalog } = await scrapeSiteContent(url);
+    const campaigns = await generateCampaignPrompt(monthYear, "", scrapedCatalog);
 
     const campaignSet = new CampaignSet({
       month,

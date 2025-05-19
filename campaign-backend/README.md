@@ -2,6 +2,39 @@
 
 This backend service generates a dynamic series of email marketing campaigns using the OpenAI API, then stores the structured JSON output in a MongoDB database.
 
+### Flow
+```mermaid
+flowchart TD
+  Start([User submits URL])
+
+  Start --> CheckCache{Is URL in DB?}
+  CheckCache -->|Yes| ReturnCache[Return existing campaign]
+  CheckCache -->|No| ScrapeStart[Start scraping process]
+
+  ScrapeStart --> CheerioTry["Try Cheerio (static scrape)"]
+  CheerioTry --> CheerioBlocks{Are useful product blocks found?}
+
+  CheerioBlocks -->|Yes| ReduceCheerio[Reduce + Clean product text]
+  ReduceCheerio --> GPT[Send to OpenAI for campaign]
+
+  CheerioBlocks -->|No| PuppeteerStart[Fallback to Puppeteer]
+
+  PuppeteerStart --> WaitWoo[Wait for known WooCommerce selector]
+  WaitWoo --> WooCheck{Woo content found?}
+  
+  WooCheck -->|Yes| ExtractWoo[Extract title, price, desc]
+  ExtractWoo --> ReduceWoo[Reduce + Clean Woo product text]
+  ReduceWoo --> GPT
+
+  WooCheck -->|No| EvalHTML[Evaluate full HTML content]
+  EvalHTML --> FallbackBlocks[Use heuristic block matching]
+  FallbackBlocks --> ReduceFallback[Reduce + Clean fallback text]
+  ReduceFallback --> GPT
+
+  GPT --> SaveDB[Save campaigns to DB]
+  SaveDB --> Done([Respond to user])
+```
+
 ### 📦 Tech Stack
 * Node.js / Express.js
 * MongoDB with Mongoose
