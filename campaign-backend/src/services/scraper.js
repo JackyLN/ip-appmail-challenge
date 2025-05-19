@@ -85,13 +85,24 @@ async function scrapeSiteContent(url) {
 
     try {
       const browser = await puppeteer.launch({
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         headless: "new",
-        executablePath: isDocker || undefined, // use custom path in Docker only
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        timeout: 0,
+        args: [
+          "--no-sandbox",
+          "--disable-setuid-sandbox",
+          "--disable-dev-shm-usage",
+          "--disable-gpu",
+          "--single-process",
+          "--no-zygote",
+        ],
       });
 
       const page = await browser.newPage();
-      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 20000 });
+      await page.goto(url, {
+        waitUntil: "domcontentloaded",
+        timeout: 60000,
+      });
 
       try {
         await page.waitForSelector(".product_title", { timeout: 5000 });
